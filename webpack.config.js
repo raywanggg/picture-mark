@@ -91,7 +91,7 @@ module.exports = {
         }),
         //指定生成页面插件，元素用js生成
         new HtmlwebpackPlugin({
-            template: 'node_modules/html-webpack-plugin/default_index.ejs',
+            template: 'src/default_index.ejs',
             filename: 'index.html',
             title: 'mark-demo',
             //自己加个图标
