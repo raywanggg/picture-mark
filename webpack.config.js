@@ -27,13 +27,38 @@ module.exports = {
                     plugins: ["transform-object-rest-spread"]
                 }
             }]
-        }, {
+        }, 
+        {
             test: /\.css$/,
             use: ["style-loader", { loader: 'css-loader', options: { importLoaders: 1 } }, "postcss-loader"]
-        }, {
+        }, 
+        {
             test: /\.(?:png|jpg|gif|svg)$/,
             loader: 'url-loader?limit=8192&name=image/[hash].[ext]' //小于8k,内嵌;大于8k生成文件
-        }]
+        }
+        // {
+        //     test: /\.css$/,
+        //     use: [{
+        //         loader: 'style-loader'
+        //     }, {
+        //         loader: 'css-loader'
+        //     }, {
+        //         loader: 'postcss-loader',
+        //         options: {
+        //             plugins: function() {
+        //                 return [
+        //                     require('postcss-import'),
+        //                     require('postcss-url'),
+        //                     require('postcss-mixins'),
+        //                     require('postcss-nested'),
+        //                     require('postcss-css-variables'),
+        //                     require('autoprefixer')
+        //                 ]
+        //             }
+        //         }
+        //     }]
+        // }
+        ]
     },
 
     resolve: {
@@ -64,9 +89,11 @@ module.exports = {
             mangle: true,
             comments: false
         }),
+        //指定生成页面插件，元素用js生成
         new HtmlwebpackPlugin({
+            template: 'node_modules/html-webpack-plugin/default_index.ejs',
             filename: 'index.html',
-            title: '这是王睿写的高大上应用',
+            title: 'mark-demo',
             //自己加个图标
             // favicon: path.resolve(__dirname, "src/asserts/image/favicon.ico")
         }),

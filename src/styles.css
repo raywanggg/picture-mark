@@ -1,4 +1,326 @@
-canvas {
-    border: 1px solid gray;
-    margin: 30px;
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,
+fieldset,legend,button,input,textarea,th,td {
+    margin: 0;
+    padding: 0;
+}
+
+#drawing {
+	/*z-index: 10;*/
+	background-image: url("/image/test1.jpg");/*设置背景*/
+	background-size: 100% 100%;
+}
+#control-panel {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 80px;
+	margin: 0;
+	padding: 0;
+	width: 80px;
+	height: 320px;
+	border-radius: 4px;
+	list-style: none;
+	/*a {
+		display: block;
+		position: absolute;
+		width: 80px;
+		height: 80px;
+		opacity: 0.82;
+		background-color: #f0ecee;
+		text-decoration: none;
+		transition: all 0.5s ease-in-out;
+	}
+	a:hover {
+		opacity: 0.95;
+	}
+	div {
+		position: absolute;
+	}
+	.btn-pin {
+		width: 25px;
+		height: 25px;
+		border: 4px solid #033c69;
+		border-radius: 25px;
+		top: 24%;
+		left: 30%;
+	}
+	.btn-pin:after {
+		position: absolute;
+		content: "";
+		width: 0;
+		height: 0;
+		border: 6px solid transparent;
+		border-top: 14px solid #033c69;
+		top: 100%;
+		left: 28%;
+	}
+
+	.btn-rect {
+		width: 34px;
+		height: 30px;
+		border: 4px solid #033c69;
+		top: 26%;
+		left: 25%;
+	}
+
+	.btn-ellipse {
+		width: 34px;
+		height: 34px;
+		border: 4px solid #033c69;
+		border-radius: 40px;
+		top: 26%;
+		left: 25%;
+	}
+
+	.btn-line {
+		width: 34px;
+		height: 48px;
+		border-left: 4px solid #033c69;
+		transform: translate(13px,10px) rotate(45deg);
+		top: 25%;
+		left: 23%;
+	}
+	.btn-line:before {
+		position: absolute;
+		border: 10px solid transparent;
+		border-bottom: 10px solid #033c69;
+		content: "";
+		top: -16px;
+		left: -12px;
+	}*/
+}
+#control-panel a {
+	display: block;
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	opacity: 0.82;
+	background-color: #f0ecee;
+	text-decoration: none;
+	transition: all 0.5s ease-in-out;
+}
+#control-panel a:hover {
+	opacity: 0.95;
+}
+
+#control-panel div {
+	position: absolute;
+}
+
+.btn-pin {
+	width: 25px;
+	height: 25px;
+	border: 4px solid #033c69;
+	border-radius: 25px;
+	top: 24%;
+	left: 30%;
+}
+.btn-pin:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-top: 14px solid #033c69;
+	top: 100%;
+	left: 28%;
+}
+
+.btn-rect {
+	width: 34px;
+	height: 30px;
+	border: 4px solid #033c69;
+	top: 26%;
+	left: 25%;
+}
+
+.btn-ellipse {
+	width: 34px;
+	height: 34px;
+	border: 4px solid #033c69;
+	border-radius: 40px;
+	top: 26%;
+	left: 25%;
+}
+
+.btn-line {
+	width: 34px;
+	height: 48px;
+	border-left: 4px solid #033c69;
+	transform: translate(13px,10px) rotate(45deg);
+	top: 25%;
+	left: 23%;
+}
+.btn-line:before {
+	position: absolute;
+	border: 10px solid transparent;
+	border-bottom: 10px solid #033c69;
+	content: "";
+	top: -16px;
+	left: -12px;
+}
+
+/*标记标号*/
+.mark-picture {
+	background: transparent;
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	background-image: url("/image/markblue-one.png");
+	background-size: 100% 100%;
+	opacity: 1;
+}
+.mark-picture:hover {
+	cursor: pointer;
+	opacity: 0;
+}
+
+.mark-sequence {
+	background: transparent;
+	position: absolute;
+	width: 16px;
+	height: 10px;
+	line-height: 10px;
+	text-align: center;
+	top: 7px;
+	left: 9px;
+	font-size: 7px;
+	font-weight: bold;
+	font-color: #534847;
+	cursor: default;
+}
+/*点的画布*/
+.new-can {
+	background: transparent;
+	position: absolute;
+}
+
+/*点的移动标记*/
+.marktools-pin {
+	position: absolute;
+	border: 4px solid #87CEFA;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+}
+.marktools-pin:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-top: 14px solid #87CEFA;
+	top: 100%;
+	left: 20%;
+}
+/*点移动完成标记*/
+/*.dotcircle-pin {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	border: 2px dashed #87CEFA;
+	border-radius: 50%;
+	background: rgba(135,206,250,0.2);
+}*/
+
+/*矩形移动标记*/
+.marktools-rect {
+	position: absolute;
+	width: 12px;
+	height: 10px;
+	background: transparent;
+	border: 2px solid #247cfc;
+}
+.coord-rect {
+	position: absolute;
+	width: 65px;
+	height: 25px;
+	font-size: 15px;
+	line-height: 25px;
+	color: #247cfc;
+}
+
+/*椭圆移动标记*/
+.marktools-ellipse {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: transparent;
+	border: 2px solid #247cfc;
+	border-radius: 50%;
+}
+
+/*箭头移动标记*/
+.marktools-line {
+	position: absolute;
+	width: 0;
+	height: 18px;
+	border: 1px solid #247cfc;
+	transform: rotate(45deg);
+}
+
+/*评论框*/
+.comment-box {
+	position: absolute;
+	box-sizing: border-box;
+	width: 300px;
+	height: 160px;
+	background-color: gray;
+	opacity: 0.6;
+}
+/*评论抬头*/
+.comment-title {
+	width: 270px;
+	height: 15px;
+	line-height: 15px;
+	margin-left: 15px;
+	margin-top: 10px;
+	font-size: 15px;
+	color: blue;
+	font-weight: bolder;
+	cursor: default;
+}
+/*评论文字*/
+.comment-text {
+	box-sizing: border-box;
+	width: 270px;
+	height: 75px;
+	margin: 10px 15px 10px 15px;
+	background-color: white;
+	opacity: 1;
+	z-index: 10;
+	font-size: 15px;
+	line-height: 15px;
+}
+/*选择按钮*/
+.comment-button {
+	display: inline-block;
+	width: 65px;
+	height: 30px;
+	/*margin-top: 10px;*/
+	text-align: center;
+	line-height: 30px;
+	font-size: 15px;
+	cursor: pointer;
+}
+.button-one {
+	margin-left: 140px;
+}
+.button-two {
+	margin-left: 15px;
+}
+.rect-paint, .ellipse-paint {
+	position: absolute;
+    border: 1px dashed blue;
+    background-color: #ADD8E6;
+    opacity: 0.6;
+    /*width: 0px;
+    height: 0px;
+    left: 0px;
+    top: 0px;*/
+    overflow: hidden;
+}
+
+.line-paint {
+
 }
