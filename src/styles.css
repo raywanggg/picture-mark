@@ -6,7 +6,7 @@ fieldset,legend,button,input,textarea,th,td {
 
 #drawing {
 	/*z-index: 10;*/
-	background-image: url("/image/test1.jpg");/*设置背景*/
+	background-image: url(./image/test1.jpg);/*设置背景*/
 	background-size: 100% 100%;
 }
 #control-panel {
