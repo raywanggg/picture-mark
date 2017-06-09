@@ -30,35 +30,31 @@ module.exports = {
         }, 
         {
             test: /\.css$/,
-            use: ["style-loader", { loader: 'css-loader', options: { importLoaders: 1 } }, "postcss-loader"]
+            // use: ["style-loader", { loader: 'css-loader', options: { importLoaders: 1 } }, "postcss-loader"]
+            use: [{
+                loader: 'style-loader'
+            }, {
+                loader: 'css-loader'
+            }, {
+                loader: 'postcss-loader',
+                options: {
+                    plugins: function() {
+                        return [
+                            require('postcss-import'),
+                            require('postcss-url'),
+                            require('postcss-mixins'),
+                            require('postcss-nested'),
+                            require('postcss-css-variables'),
+                            require('autoprefixer')
+                        ]
+                    }
+                }
+            }]
         }, 
         {
             test: /\.(?:png|jpg|gif|svg)$/,
             loader: 'url-loader?limit=8192&name=image/[hash].[ext]' //小于8k,内嵌;大于8k生成文件
-        }
-        // {
-        //     test: /\.css$/,
-        //     use: [{
-        //         loader: 'style-loader'
-        //     }, {
-        //         loader: 'css-loader'
-        //     }, {
-        //         loader: 'postcss-loader',
-        //         options: {
-        //             plugins: function() {
-        //                 return [
-        //                     require('postcss-import'),
-        //                     require('postcss-url'),
-        //                     require('postcss-mixins'),
-        //                     require('postcss-nested'),
-        //                     require('postcss-css-variables'),
-        //                     require('autoprefixer')
-        //                 ]
-        //             }
-        //         }
-        //     }]
-        // }
-        ]
+        }]
     },
 
     resolve: {
