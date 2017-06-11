@@ -1,4 +1,4 @@
 // rect.js
 
-const rect = null;
+const rect = function(){};
 export default rect;

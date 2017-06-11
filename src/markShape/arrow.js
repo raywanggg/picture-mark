@@ -1,4 +1,4 @@
 // arrow.js
 
-const arrow = null;
+const arrow = function(){};
 export default arrow;

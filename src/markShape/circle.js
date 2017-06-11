@@ -1,4 +1,4 @@
 // circle.js
 
-const circle = null;
+const circle = function(){};
 export default circle;

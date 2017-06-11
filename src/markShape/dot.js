@@ -1,4 +1,4 @@
 // dot.js
 
-const dot = null;
+const dot = function(){};
 export default dot;
