@@ -8,18 +8,20 @@ var drawing = document.getElementById("drawing");
 var cxt = drawing.getContext("2d");
 var e = window.event||e;
 markShape.cxt = cxt;
+markShape.canvas = drawing;
+markShape.panel = control_panel;
 
 var isComment = true;
 var isDrag = false;
 var drag = false;
 var flag = false;
 
-var method = {
-	addDot: markShape.dot,
-	addRect: markShape.rect,
-	addCircle: markShape.circle,
-	addArrow: markShape.arrow
-}
+// var method = {
+// 	addDot: markShape.dot,
+// 	addRect: markShape.rect,
+// 	addCircle: markShape.circle,
+// 	addArrow: markShape.arrow
+// }
 
 //侧栏显示
 var movePanel = e => {
@@ -41,8 +43,9 @@ document.addEventListener('mousemove', movePanel, false);
 // 1、control_panel.click();
 var clickPanel = e => {
 	let type = e.target.getAttribute("data-shape-type");
-	type = "add" + type.charAt(0).toUpperCase() + type.toLowerCase().slice(1);//2、es6转换大小写
-	method[type]();
+	markShape[type]();
+	// type = "add" + type.charAt(0).toUpperCase() + type.toLowerCase().slice(1);//2、es6转换大小写
+	// method[type](markShape);
 };
 control_panel.addEventListener('click', clickPanel, false);
 console.log(markShape);
