@@ -29,6 +29,7 @@ const dot = function() {
     	n.setLineDash([4, 6]);
 	    n.strokeStyle = "#87CEFA";
 	    n.fillStyle = "rgba(135,206,250,0.2)";
+	    n.linewidth = 1;//边框宽度
 	    n.stroke();
 	    n.fill();         
 	    n.closePath();
@@ -46,11 +47,11 @@ const dot = function() {
         var yPin = e.pageY;
         dotCreate(xPin, yPin, cxt);
         canvas.removeEventListener('mousedown', downDot);
-        // canvas.removeEventListener('mousemove', moveDot);
+        canvas.removeEventListener('mousemove', moveDot);
         console.log("down");
     };
-    // canvas.removeEventListener('click');
-    canvas.addEventListener('mousedown', downDot, false);
+
+    markPin.addEventListener('mousedown', downDot, false);
     canvas.addEventListener('mousemove', moveDot, false);
     
     

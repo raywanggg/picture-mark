@@ -11,6 +11,7 @@ markShape.cxt = cxt;
 markShape.canvas = drawing;
 markShape.panel = control_panel;
 
+
 var isComment = true;
 var isDrag = false;
 var drag = false;
@@ -49,4 +50,3 @@ var clickPanel = e => {
 };
 control_panel.addEventListener('click', clickPanel, false);
 console.log(markShape);
- 
