@@ -1,6 +1,7 @@
 // rect.js
 
-import center from './center';
+import addCenter from './center';
+import addCanvas from './canvas';
 const rect = function() {
 	console.log(this);
 	var e = window.event||e;
@@ -15,6 +16,7 @@ const rect = function() {
 	//添加长宽表示,mousemove后显示
     var coordRect = document.createElement("p");
     coordRect.className = "coord-rect";
+    document.body.appendChild(coordRect);
 
 	//改变鼠标形状
 	document.body.style.cursor = "crosshair";
@@ -24,11 +26,15 @@ const rect = function() {
     markRect.style.left = (e.pageX + 7) + "px";
     markRect.style.top = (e.pageY - 23) + "px";
 
+    //建立新画布
+    var rectCan = addCanvas();
+    var rectcxt = rectCan.getContext("2d");
+
     var downRect = e => {
     	isClick = true;
     	startX = e.pageX;
     	startY = e.pageY;
-    	cxt.moveTo(startX, startY);
+    	rectcxt.moveTo(startX, startY);
 
     	//矩形框的拖拽缩放
     	// if (isDrag && e.pageX > x1 && e.pageX < x2 && e.pageY > y1 && e.pageY < y2) {
@@ -54,29 +60,28 @@ const rect = function() {
             y2 = rect.top + rect.height;
             rectArray.push(rect);
             //虚线函数
-            cxt.beginPath();
-            cxt.setLineDash([4, 8]);
-            cxt.strokeStyle = "rgb(176, 226, 255)";//边框颜色
-            cxt.fillStyle = "rgba(135,206,250,0.2)";//填充颜色
-            cxt.linewidth = 1;//边框宽度
+            rectcxt.beginPath();
+            rectcxt.setLineDash([4, 8]);
+            rectcxt.strokeStyle = "rgb(176, 226, 255)";//边框颜色
+            rectcxt.fillStyle = "rgba(135,206,250,0.2)";//填充颜色
+            rectcxt.linewidth = 1;//边框宽度
             if (rectArray[1]) {
-                cxt.clearRect(rectArray[0].left - 1,
+                rectcxt.clearRect(rectArray[0].left - 1,
                     rectArray[0].top - 1,
                     rectArray[0].width + 2,
                     rectArray[0].height + 2);
-                cxt.strokeRect(rectArray[1].left,
+                rectcxt.strokeRect(rectArray[1].left,
                     rectArray[1].top,
                     rectArray[1].width,
                     rectArray[1].height);//pop移出并删除栈顶元素
-                cxt.fillRect(rectArray[1].left,
+                rectcxt.fillRect(rectArray[1].left,
                     rectArray[1].top,
                     rectArray[1].width,
                     rectArray[1].height);
                 rectArray.shift();//shift移出并删除首元素
             }
-            cxt.closePath();
+            rectcxt.closePath();
             //描出长宽
-            document.body.appendChild(coordRect);
             coordRect.innerHTML = "(" + (x2 - x1) + "x" + (y2 - y1) + ")";
             coordRect.style.left = (e.pageX - 70) + "px";
             coordRect.style.top = (e.pageY + 5) + "px";
@@ -90,18 +95,25 @@ const rect = function() {
     	document.body.removeChild(coordRect);
     	//标记实心四点
         cxt.beginPath();
-        center(x1,y1,2,cxt);
-        center(x1,y2,2,cxt);
-        center(x2,y1,2,cxt);
-        center(x2,y2,2,cxt);
+        cxt.setLineDash([4, 8]);
+        cxt.strokeStyle = "rgb(176, 226, 255)";//边框颜色
+        cxt.fillStyle = "rgba(135,206,250,0.2)";//填充颜色
+        cxt.linewidth = 1;//边框宽度
+        cxt.strokeRect(x1, y1, x2-x1, y2-y1);
+        cxt.fillRect(x1, y1, x2-x1, y2-y1);
+        addCenter(x1,y1,2,cxt);
+        addCenter(x1,y2,2,cxt);
+        addCenter(x2,y1,2,cxt);
+        addCenter(x2,y2,2,cxt);
         cxt.closePath();
-        canvas.removeEventListener('mousedown', downRect);
-        canvas.removeEventListener('mouseup', upRect);
+        document.body.removeChild(rectCan);
+        // canvas.removeEventListener('mousedown', downRect);
+        // canvas.removeEventListener('mouseup', upRect);
     };
 
-    canvas.addEventListener('mousedown', downRect, false);
-    canvas.addEventListener('mousemove', moveRect, false);
-    canvas.addEventListener('mouseup', upRect, false);
+    rectCan.addEventListener('mousedown', downRect, false);
+    rectCan.addEventListener('mousemove', moveRect, false);
+    rectCan.addEventListener('mouseup', upRect, false);
     
 };
 

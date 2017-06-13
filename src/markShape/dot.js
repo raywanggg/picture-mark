@@ -4,7 +4,7 @@
 // const dot = () => {
 // 	console.log(this);
 // };
-import center from './center';
+import addCenter from './center';
 const dot = function() {
 	console.log(this);
 	var e = window.event||e;
@@ -23,7 +23,7 @@ const dot = function() {
 
     var dotCreate = (x,y,n) => {
     	n.beginPath();
-    	center(x, y, 2, n);
+    	addCenter(x, y, 2, n);
     	n.moveTo(x+15, y);
     	n.arc(x, y, 15, 0, 2*Math.PI, false);
     	n.setLineDash([4, 6]);
@@ -39,7 +39,6 @@ const dot = function() {
     	markPin.style.left = (e.pageX - 15) + "px";
     	markPin.style.top = (e.pageY - 40) + "px";
     };
-
     var downDot = e => {
     	document.body.style.cursor = "auto";
     	document.body.removeChild(markPin);
