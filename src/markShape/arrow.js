@@ -88,7 +88,25 @@ const arrow = function() {
     	markLine.style.left = (e.pageX + 15) + "px";
     	markLine.style.top = (e.pageY - 25) + "px";
     	if (isClick) {
-
+    		var mark = { };
+        	mark.endX = e.pageX;
+        	mark.endY = e.pageY;
+            arrArray.push(mark);
+            //虚线函数
+            arrcxt.beginPath();
+            arrcxt.setLineDash([4, 8]);
+            arrcxt.strokeStyle = "rgb(176, 226, 255)";
+            arrcxt.fillStyle = "rgba(135,206,250,0.2)";
+            arrcxt.linewidth = 1;
+            if (arrArray[1]) {
+                //清除数组第一个元素即清除整张画布
+                // arrcxt.clearRect(startX, arrArray[0].endY, arrArray[0].endX - startX, startY - arrArray[0].endY);
+                arrcxt.clearRect(0, 0, arrCan.width, arrCan.height);
+                //画箭头
+                // ArrowCreate(startX,startY,arrArray[0].endX,arrArray[0].endY,arrcxt);
+                arrArray.shift();//shift移出并删除首元素
+            }
+            arrcxt.closePath();
     	}
     };
     var upArr = e => {
