@@ -49,4 +49,4 @@ var clickPanel = e => {
 	// method[type](markShape);
 };
 control_panel.addEventListener('click', clickPanel, false);
-console.log(markShape);
+// console.log(markShape);
