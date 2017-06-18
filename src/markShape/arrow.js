@@ -32,9 +32,9 @@ const arrow = function(ev) {
     //修改箭头头部
 	let ArrowSize = (x1,y1,x2,y2) => {
         const EDGELEN = 50, ANGLE = 25;
-	    let x = Math.abs(x2 - x1);
-	    let y = Math.abs(y2 - y1);
-	    let arrowlength = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+	    const x = Math.abs(x2 - x1);
+	    const y = Math.abs(y2 - y1);
+	    const arrowlength = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
 	    if (arrowlength < 250) {
 	        arrow.edgeLen = EDGELEN/2;
 	        arrow.angle = ANGLE/2;
