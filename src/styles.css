@@ -34,6 +34,12 @@ fieldset,legend,button,input,textarea,th,td {
 	div {
 		position: absolute;
 	}
+	.save-click {
+		text-align: center;
+		line-height: 80px;
+		font-size: 18px;
+		color: #033c69;
+	}
 	.btn-pin {
 		width: 25px;
 		height: 25px;
