@@ -6,22 +6,22 @@
 // };
 import addCenter from './center';
 const dot = function() {
-	console.log(this);
-	var e = window.event||e;
-	var cxt = this.cxt;
-	var canvas = this.canvas;
-	var panel = this.panel;
+	// console.log(this);
+	const e = window.event||e;
+	const cxt = this.cxt;
+	const canvas = this.canvas;
+	const panel = this.panel;
 	panel.style.display = "none";
 
 	//改变鼠标形状
 	document.body.style.cursor = "none";
-	var markPin = document.createElement("div");
+	let markPin = document.createElement("div");
 	markPin.className = "marktools-pin";
     document.body.appendChild(markPin);
     markPin.style.left = (e.pageX - 15) + "px";
     markPin.style.top = (e.pageY - 40) + "px";
 
-    var dotCreate = (x,y,n) => {
+    const dotCreate = (x,y,n) => {
     	n.beginPath();
     	addCenter(x, y, 2, n);
     	n.moveTo(x+15, y);
@@ -35,19 +35,18 @@ const dot = function() {
 	    n.closePath();
     };
 
-    var moveDot = e => {
+    const moveDot = e => {
     	markPin.style.left = (e.pageX - 15) + "px";
     	markPin.style.top = (e.pageY - 40) + "px";
     };
-    var downDot = e => {
+    const downDot = e => {
     	document.body.style.cursor = "auto";
     	document.body.removeChild(markPin);
-    	var xPin = e.pageX;
-        var yPin = e.pageY;
+    	let xPin = e.pageX;
+        let yPin = e.pageY;
         dotCreate(xPin, yPin, cxt);
         canvas.removeEventListener('mousedown', downDot);
         canvas.removeEventListener('mousemove', moveDot);
-        console.log("down");
     };
 
     markPin.addEventListener('mousedown', downDot, false);

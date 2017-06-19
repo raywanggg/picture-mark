@@ -1,7 +1,7 @@
 //create new Canvas, then remove
 
 const addCanvas = function() {
-    var canvas = document.createElement("canvas");
+    let canvas = document.createElement("canvas");
     canvas.width = 1150;
     canvas.height = 650;
     canvas.style.position = "absolute";

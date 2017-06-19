@@ -3,34 +3,35 @@
 import addCenter from './center';
 import addCanvas from './canvas';
 const rect = function() {
-	console.log(this);
-	var e = window.event||e;
-	var cxt = this.cxt;
-	var canvas = this.canvas;
-	var panel = this.panel;
-	var startX, startY, x1, x2, y1, y2, dragX, dragY;
-	var isClick = false;//判断是否已经点击
-	var isDrag = false;//判断是否可以移动（评论框生成方可拖拽）
-	var rectArray = new Array();
+	// console.log(this);
+	const e = window.event||e;
+	const cxt = this.cxt;
+	const canvas = this.canvas;
+	const panel = this.panel;
+	let startX, startY, x1, x2, y1, y2, dragX, dragY;
+	let isClick = false;//判断是否已经点击
+	let isDrag = false;//判断是否可以移动（评论框生成方可拖拽）
+	let rectArray = new Array();
 	panel.style.display = "none";
+
 	//添加长宽表示,mousemove后显示
-    var coordRect = document.createElement("p");
+    let coordRect = document.createElement("p");
     coordRect.className = "coord-rect";
     document.body.appendChild(coordRect);
 
 	//改变鼠标形状
 	document.body.style.cursor = "crosshair";
-	var markRect = document.createElement("div");
+	let markRect = document.createElement("div");
     markRect.className = "marktools-rect";// imgPin.addClass为什么不行
     document.body.appendChild(markRect);
     markRect.style.left = (e.pageX + 7) + "px";
     markRect.style.top = (e.pageY - 23) + "px";
 
     //建立新画布
-    var rectCan = addCanvas();
-    var rectcxt = rectCan.getContext("2d");
+    let rectCan = addCanvas();
+    let rectcxt = rectCan.getContext("2d");
 
-    var downRect = e => {
+    const downRect = e => {
     	isClick = true;
     	startX = e.pageX;
     	startY = e.pageY;
@@ -43,12 +44,12 @@ const rect = function() {
      //        dragY = e.pageY;
      //    }
     }; 
-    var moveRect = e => {
+    const moveRect = e => {
     	markRect.style.left = (e.pageX + 7) + "px";
     	markRect.style.top = (e.pageY - 23) + "px";
     	if (isClick) {
     		//考虑反方向情况重新选取开始点
-            var rect = { };//定义矩形的长宽间距
+            let rect = { };//定义矩形的长宽间距
             rect.left = (startX - e.pageX > 0 ? e.pageX : startX);
             rect.top = (startY - e.pageY > 0 ? e.pageY : startY);
             rect.height = Math.abs(startY - e.pageY);
@@ -87,7 +88,7 @@ const rect = function() {
             coordRect.style.top = (e.pageY + 5) + "px";
     	}
     };
-    var upRect = e => {
+    const upRect = e => {
     	isClick = false;
     	document.body.style.cursor = "auto";
     	rectArray.length = 0;

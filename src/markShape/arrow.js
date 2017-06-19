@@ -9,7 +9,6 @@ const arrow = function(ev) {
 	const panel = this.panel;
 	let startX, startY;
 	let isClick = false;//判断是否已经点击
-	// let arrArray = [];
 	let a1,a2,b1,b2,c1,c2,d1,d2;//a1a2b1b2c1c2d1d2分别为连线上的四点
 	let arrow = {//定义箭头顶部的角度和边长
 	    edgeLen: null,
@@ -30,7 +29,7 @@ const arrow = function(ev) {
     let arrcxt = arrCan.getContext("2d");
 
     //修改箭头头部
-	let ArrowSize = (x1,y1,x2,y2) => {
+	const ArrowSize = (x1,y1,x2,y2) => {
         const EDGELEN = 50, ANGLE = 25;
 	    const x = Math.abs(x2 - x1);
 	    const y = Math.abs(y2 - y1);
@@ -91,38 +90,19 @@ const arrow = function(ev) {
     	markLine.style.left = (pageX + 15) + "px";
     	markLine.style.top = (pageY - 25) + "px";
     	if (isClick) {
-    		// let mark = { };
-      //   	mark.endX = pageX;
-      //   	mark.endY = pageY;
-            // arrArray.push(mark);
-            //虚线函数
-            
-            arrcxt.setLineDash([4, 8]);
+    		arrcxt.setLineDash([4, 8]);
             arrcxt.strokeStyle = "rgb(176, 226, 255)";
             arrcxt.fillStyle = "rgba(135,206,250,0.2)";
             arrcxt.linewidth = 1;
-
-            // console.log(arrArray);
-
-
-            // if (arrArray[1]) {
-                //清除数组第一个元素即清除整张画布
-                // arrcxt.clearRect(startX, arrArray[0].endY, arrArray[0].endX - startX, startY - arrArray[0].endY);
-                arrcxt.clearRect(0, 0, arrCan.width, arrCan.height);
-                //画箭头
-                // ArrowCreate(startX,startY,arrArray[0].endX,arrArray[0].endY,arrcxt);
-                ArrowCreate(startX, startY, pageX, pageY, arrcxt);
-                // arrArray.shift();//shift移出并删除首元素
-            // }
-            // console.log(startX, startY, pageX, pageY, arrcxt);
+            arrcxt.clearRect(0, 0, arrCan.width, arrCan.height);
+            ArrowCreate(startX, startY, pageX, pageY, arrcxt);
             arrcxt.closePath();
     	}
     };
-    let upArr = e => {
+    const upArr = e => {
         const {pageX, pageY} = e;
     	isClick = false;
     	document.body.style.cursor = "auto";
-    	// arrArray = [];
     	document.body.removeChild(markLine);
     	
         ArrowCreate(startX,startY,pageX,pageY,cxt);
