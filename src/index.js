@@ -1,6 +1,7 @@
 // index.js
 // 主入口文件
 import markShape from './markShape';
+import imgUrl from './image/test1.jpg';
 import './styles';
 
 var control_panel = document.getElementById("control-panel");
@@ -11,11 +12,14 @@ markShape.cxt = cxt;
 markShape.canvas = drawing;
 markShape.panel = control_panel;
 
+//给canvas画图
+var canvasImg = new Image();
+canvasImg.src = imgUrl;
+canvasImg.onload = function() {
+	cxt.drawImage(canvasImg, 0, 0, 1150, 650);
+}
 
-var isComment = true;
-var isDrag = false;
-var drag = false;
-var flag = false;
+
 
 // var method = {
 // 	addDot: markShape.dot,
@@ -26,7 +30,7 @@ var flag = false;
 
 //侧栏显示
 var movePanel = e => {
-	if(e.pageX <= 10 && e.pageY > 80 && e.pageY < 400 && isComment == true && flag == false) {   
+	if(e.pageX <= 10 && e.pageY > 80 && e.pageY < 400) {   
         control_panel.style.display = "block"; 
     } 
     control_panel.addEventListener('mouseenter', enterPanel, false);
@@ -49,4 +53,3 @@ var clickPanel = e => {
 	// method[type](markShape);
 };
 control_panel.addEventListener('click', clickPanel, false);
-// console.log(markShape);

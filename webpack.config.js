@@ -90,6 +90,7 @@ module.exports = {
             template: 'src/default_index.ejs',
             filename: 'index.html',
             title: 'mark-demo',
+            imgUrl: path.resolve(__dirname, "src/image/test1.jpg")
             //自己加个图标
             // favicon: path.resolve(__dirname, "src/asserts/image/favicon.ico")
         }),

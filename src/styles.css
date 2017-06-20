@@ -3,10 +3,7 @@ fieldset,legend,button,input,textarea,th,td {
 	margin: 0;
 	padding: 0;
 }
-#drawing {
-	background-image: url("./image/test1.jpg");
-	background-size: 100% 100%;
-}
+
 #control-panel {
 	display: none;
 	position: absolute;
