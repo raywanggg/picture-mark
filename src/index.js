@@ -4,16 +4,16 @@ import markShape from './markShape';
 import imgUrl from './image/test1.jpg';
 import './styles';
 
-var control_panel = document.getElementById("control-panel");
-var drawing = document.getElementById("drawing");
-var cxt = drawing.getContext("2d");
-var e = window.event||e;
+const control_panel = document.getElementById("control-panel");
+const drawing = document.getElementById("drawing");
+const cxt = drawing.getContext("2d");
+const e = window.event||e;
 markShape.cxt = cxt;
 markShape.canvas = drawing;
 markShape.panel = control_panel;
 
 //给canvas画图
-var canvasImg = new Image();
+let canvasImg = new Image();
 canvasImg.src = imgUrl;
 canvasImg.onload = function() {
 	cxt.drawImage(canvasImg, 0, 0, 1150, 650);
@@ -29,24 +29,24 @@ canvasImg.onload = function() {
 // }
 
 //侧栏显示
-var movePanel = e => {
+const movePanel = e => {
 	if(e.pageX <= 10 && e.pageY > 80 && e.pageY < 400) {   
         control_panel.style.display = "block"; 
     } 
     control_panel.addEventListener('mouseenter', enterPanel, false);
 	control_panel.addEventListener('mouseleave', leavePanel, false);
 };
-var enterPanel = e => {
+const enterPanel = e => {
 	control_panel.style.display = "block";
 };
-var leavePanel = e => {
+const leavePanel = e => {
 	control_panel.style.display = "none";
 };
 document.addEventListener('mousemove', movePanel, false);
 
 //侧栏点击
 // 1、control_panel.click();
-var clickPanel = e => {
+const clickPanel = e => {
 	let type = e.target.getAttribute("data-shape-type");
 	markShape[type]();
 	// type = "add" + type.charAt(0).toUpperCase() + type.toLowerCase().slice(1);//2、es6转换大小写

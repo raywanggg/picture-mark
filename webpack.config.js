@@ -54,6 +54,14 @@ module.exports = {
         {
             test: /\.(?:png|jpg|gif|svg)$/,
             loader: 'url-loader?limit=8192&name=image/[hash].[ext]' //小于8k,内嵌;大于8k生成文件
+        },
+        {
+            test: /handleEffectWorker\.js$/,
+            // include: [path.resolve(__dirname, "src/unit")],
+            enforce: "post",
+            use: [{
+                loader: "file-loader?name=[path][name].[ext]"
+            }]
         }]
     },
 
