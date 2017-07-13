@@ -1,6 +1,7 @@
 // index.js
 // 主入口文件
 import markShape from './markShape';
+import imgFilter from './imgFilter';
 import imgUrl from './image/test1.jpg';
 import './styles';
 
@@ -12,14 +13,13 @@ markShape.cxt = cxt;
 markShape.canvas = drawing;
 markShape.panel = control_panel;
 
+
 //给canvas画图
 let canvasImg = new Image();
 canvasImg.src = imgUrl;
 canvasImg.onload = function() {
 	cxt.drawImage(canvasImg, 0, 0, 1150, 650);
 }
-
-
 
 // var method = {
 // 	addDot: markShape.dot,
@@ -53,3 +53,9 @@ const clickPanel = e => {
 	// method[type](markShape);
 };
 control_panel.addEventListener('click', clickPanel, false);
+
+const clickFilter = e => {
+	let type = e.target.getAttribute("data-filter-type");
+	imgFilter.handleEffect(type);
+}
+document.addEventListener('click', clickFilter, false);

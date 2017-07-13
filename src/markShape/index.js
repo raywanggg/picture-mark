@@ -1,4 +1,4 @@
-// index.js
+// index.js based on mark
 import rect from './rect';
 import dot from './dot';
 import circle from './circle';

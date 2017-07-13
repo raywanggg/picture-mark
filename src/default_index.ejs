@@ -7,6 +7,8 @@
   <body>
   	<canvas id="drawing" width="1150" height="650"></canvas>
   	<!-- <img id="cartoon" src="<%= htmlWebpackPlugin.options.imgUrl %>" alt="cartoon"> -->
+
+  	<!-- 标记栏 -->
 	<div id="control-panel">
 		<a class="pin-click" data-shape-type="dot" href="javascript:void(0)" style="top:0;" >
 			<div class="btn-pin" data-shape-type="dot"></div>
@@ -22,5 +24,12 @@
 		</a>
 		<a class="save-click" data-shape-type="save" href="javascript:void(0)" style="top:320px;">save</a>
 	</div>
+
+	<!-- 滤镜栏 -->
+	<ul id="filter-panel">
+		<a class="filter" data-filter-type="GRAY" href="javascript:void(0)" style="display: inline-block; width: 30px; height: 30px; background: #dedede">
+			<div data-filter-type="GRAY"></div>
+		</a>
+	</ul>
   </body>
 </html>

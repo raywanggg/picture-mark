@@ -1,12 +1,14 @@
 // dot.js
 
 // 箭头函数不会改变作用域
-// const dot = () => {
+// const test = () => {
 // 	console.log(this);
 // };
+// 箭头函数this指向定义时的作用域；
+// es5this指向运行时的作用域；
 import addCenter from './center';
 const dot = function() {
-	// console.log(this);
+	console.log(this);
 	const e = window.event||e;
 	const cxt = this.cxt;
 	const canvas = this.canvas;
