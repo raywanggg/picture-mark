@@ -1,3 +1,27 @@
+function deepCopyObj(obj, Class) {
+  const o = Class ? new Class() : {};
+  for (let attr in obj) {
+    //$$hashKey 为angular 自行封装的属性，需要过滤掉
+    if (obj.hasOwnProperty(attr) && attr !== '$$hashKey') {
+        console.log(Object.prototype.toString.call(obj[attr]))
+      if (typeof(obj[attr]) === "object") {
+        if (obj[attr] === null) {
+          o[attr] = null;
+        } else if (Object.prototype.toString.call(obj[attr]) === '[object Array]') {
+          o[attr] = [];
+          for (var i = 0, len = obj[attr].length; i < len; i++) {
+            o[attr].push(deepCopyObj(obj[attr][i]));
+          }
+        } else {
+          o[attr] = deepCopyObj(obj[attr]);
+        }
+      } else {
+        o[attr] = obj[attr];
+      }
+    }
+  }
+  return o;
+};
 
 onmessage = function(e) {
 
