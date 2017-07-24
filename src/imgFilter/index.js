@@ -11,7 +11,7 @@ function handleEffect(effect,cxt,originImgData) {
 		putImageData(cxt, originImgData, 0, 0, 0, 0, 1150, 650);
 	} else {
 		let wk = new Worker(handleEffectWorkerUrl);
-		wk.postMessage({imgData: originImgData, effect});
+		wk.postMessage({imgData: presentImgData, effect});
 		wk.onmessage = function(e) {
 			putImageData(cxt, e.data, 0, 0, 0, 0, 1150, 650);
 		}
