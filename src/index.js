@@ -9,6 +9,7 @@ const control_panel = document.getElementById("control-panel");
 const drawing = document.getElementById("drawing");
 const cxt = drawing.getContext("2d");
 const e = window.event||e;
+const originData = cxt.getImageData(0, 0, 1150, 650);//获取初始图像data方便滤镜
 markShape.cxt = cxt;
 markShape.canvas = drawing;
 markShape.panel = control_panel;
@@ -56,6 +57,6 @@ control_panel.addEventListener('click', clickPanel, false);
 
 const clickFilter = e => {
 	let type = e.target.getAttribute("data-filter-type");
-	imgFilter.handleEffect(type);
+	imgFilter.handleEffect(type, cxt, originData);
 }
 document.addEventListener('click', clickFilter, false);

@@ -251,7 +251,18 @@ fieldset,legend,button,input,textarea,th,td {
 	top: 0px;*/
 	overflow: hidden;
 }
-
-.line-paint {
-
+#filter-panel {
+	.filter {
+		display: inline-block; 
+		text-decoration: none;
+		vertical-align: top;
+		width: 30px; 
+		height: 30px; 
+		div {
+			font-size: 12px;
+			color: #666;
+			line-height: 30px;
+			text-align: center;
+		}
+	}
 }
